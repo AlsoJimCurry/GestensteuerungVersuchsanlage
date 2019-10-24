@@ -1,0 +1,79 @@
+
+/* this div captures the complete visualization */
+#vizArea{
+	position: relative;
+	margin: 0;
+	width: 850px;
+	height: 500px;
+	border: yellow 1px solid ;
+}
+
+/* this div captures the three tanks*/
+#tanks{
+	width: 400px;
+	height: 350px;
+	/* the border property is quite useful for designing the layout*/
+	border:red 1px solid; 
+	float:left;
+}
+
+/* this div captures the trend */
+#trend{
+	float: left;
+	width: 400px;
+	height: 300px;
+	margin-top: 40px;
+	border: blue 1px solid ;
+	/*background-image: url('../img/trend.png');*/
+}
+
+/* the controls (buttons, dropdows etc.) are grouped in one div */
+#controls{
+	position: absolute;
+	width: 400px;
+	height: 100px;
+	left: 100px;
+	top: 360px;
+	border: green 1px solid ;
+}
+
+/* adjust the margin settings for buttons and controls */
+button, select{
+	margin: 5px;
+}
+
+/* this class is used for all tank visualizations*/
+.tank{
+	position: relative;	
+	width: 50px;
+	height:280px;
+	margin-left: 40px;
+	margin-top: 40px;
+	float: left;
+
+	/* the div container uses a image (to create a pseudo 3D effect)*/
+	background-image: url('../img/tank_top.png');
+	background-repeat: no-repeat;
+	
+	/* the color of div is used to display a liquid */
+	background-color: rgb(0,64,128);
+}
+
+/* Every tank has an own ID to customize its appearance*/
+#tank1{
+	margin-left: 100px;
+}
+
+/* this class can be used to further improve the pseudo 3D effect with a 
+buttom image */
+.bottom{
+	position: absolute;
+	width: 50px;
+	height: 6px;
+	
+	/* this image should always be at bottom of the tank diff */
+	bottom: 0px;
+	background-image: url('../img/tank_bottom.png');
+	background-repeat: no-repeat;
+}
+
