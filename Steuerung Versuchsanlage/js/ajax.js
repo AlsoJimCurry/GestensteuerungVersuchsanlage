@@ -86,7 +86,16 @@ function process(){
 	// sends the SOAP read message via Ajax
 	var sendSoapReadMessage = function(){
 		/* Put your code here ... (Aufgabe 4) */
-		//call of the jQuery ajax function ( $.ajax(...) )
+		$.ajax({
+		    url : proxyUrl, 
+		    type: 'post',
+		    headers: {"SOAPAction": '"http://opcfoundation.org/webservices/XMLDA/1.0/Read"'},
+		    data: getSoapReadMessage(),
+		    success: getDataFromReadResponse,
+			error: function (response) {
+				console.log("error");
+			}
+		});
 	}
 	
 	// returns the SOAP message that can be used to write process values
@@ -121,7 +130,14 @@ function process(){
 	// sends the SOAP write message visa Ajax
 	var sendSoapWriteMessage = function(from, to){
 		/* Put your code here ... (Aufgabe 5) */
-		//call of the jQuery ajax function ( $.ajax(...) )
+		$.ajax({
+			url : proxyUrl,
+			type: 'post',
+			headers: {"SOAPAction": '"http://opcfoundation.org/webservices/XMLDA/1.0/Write"'},
+	        data: getSoapWriteMessage(from, to),
+	        success: function(msg){console.log('values written')},
+	        error: function(msg){console.log('error')},
+		});
 	}
 	
 	return {
