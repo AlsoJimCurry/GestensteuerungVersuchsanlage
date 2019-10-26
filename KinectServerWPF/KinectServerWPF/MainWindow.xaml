@@ -5,15 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KinectServerWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="MainWindow" Height="700" Width="1200" Loaded="Window_Loaded">
     <Grid>
         <Viewbox>
             <Grid Width="1920" Height="1080">
                 <Image Name="camera"/>
                 <Canvas Name="canvas"/>
+                <Button x:Name="btnShowCamera" Content="Show Camera" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="218" Height="91" Background="DeepSkyBlue" Foreground="White" FontSize="30" Click="btnShowCamera_Click" Margin="45,45,0,0"/>
             </Grid>
         </Viewbox>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="655,17,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="120" Name="tblRightHandState"/>
-
+        <Grid HorizontalAlignment="Right" Width="394" Background="Black" Opacity="0.6">
+            <StackPanel Margin="20" >
+                <StackPanel>
+                    <TextBlock Text="From:" Foreground="White" FontSize="30"></TextBlock>
+                    <TextBlock Name="tblOriginTank" Text="-" Foreground="White" FontSize="50"></TextBlock>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="To:" Foreground="White" FontSize="30"></TextBlock>
+                    <TextBlock Name="tblTargetTank" Text="-" Foreground="White" FontSize="50"></TextBlock>
+                </StackPanel>
+                <StackPanel Margin="0,20">
+                    <TextBlock Text="Status:" Foreground="White" FontSize="30"></TextBlock>
+                    <TextBlock Name="tblPumpStatus" Text="Pump stopped" Foreground="White" FontSize="30"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

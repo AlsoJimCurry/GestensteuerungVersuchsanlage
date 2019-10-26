@@ -28,9 +28,12 @@ namespace KinectServerWPF
         MultiSourceFrameReader reader;
         IList<Body> bodies;
 
-        string originTank = "-";
-        string targetTank = "-";
-        bool startPump = false;
+        bool showCamera = false;
+
+        static string originTank = "-";
+        static string targetTank = "-";
+        static bool startPump = false;
+
         #endregion
 
         public MainWindow()
@@ -45,7 +48,7 @@ namespace KinectServerWPF
             if (sensor != null)
             {
                 sensor.Open();
-                reader = sensor.OpenMultiSourceFrameReader(FrameSourceTypes.Color | FrameSourceTypes.Depth | FrameSourceTypes.Infrared | FrameSourceTypes.Body);
+                reader = sensor.OpenMultiSourceFrameReader(FrameSourceTypes.Color | FrameSourceTypes.Body);
                 reader.MultiSourceFrameArrived += Reader_MultiSourceFrameArrived;
             }
         }
@@ -57,7 +60,7 @@ namespace KinectServerWPF
             // Camera
             using (var frame = reference.ColorFrameReference.AcquireFrame())
             {
-                if (frame != null)
+                if (frame != null && showCamera)
                 {
                     int width = frame.FrameDescription.Width;
                     int height = frame.FrameDescription.Height;
@@ -125,6 +128,9 @@ namespace KinectServerWPF
                             if (rightHandOpen && leftHandOpen) startPump = true;
                             else startPump = false;
 
+                            if (startPump) tblPumpStatus.Text = "Pumping";
+                            else tblPumpStatus.Text = "Pump stopped";
+    
                           
 
                             // Find arm position
@@ -160,13 +166,14 @@ namespace KinectServerWPF
                                 if (isArmStretched(wristLeft, elbowLeft, shoulderLeft))
                                 {
                                     // Origin
-                                    originTank = selectTank(angleBetween(elbowLeft - shoulderLeft, spineShoulder - spineBase));
+                                    originTank = selectTank(angleBetween(elbowLeft - shoulderLeft, spineBase - spineShoulder));
+                                    tblOriginTank.Text = originTank;
                                 }
                                 if (isArmStretched(wristRight, elbowRight, shoulderRight))
                                 {
                                     // Target
-                                    targetTank = selectTank(angleBetween(elbowRight - shoulderRight, spineShoulder - spineBase));
-                                    tblRightHandState.Text = targetTank;
+                                    targetTank = selectTank(angleBetween(elbowRight - shoulderRight, spineBase - spineShoulder));
+                                    tblTargetTank.Text = targetTank;
                                 }
                             }
                         }
@@ -205,5 +212,18 @@ namespace KinectServerWPF
         }
 
 
+        private void btnShowCamera_Click(object sender, RoutedEventArgs e)
+        {
+            if (showCamera)
+            {
+                btnShowCamera.Content = "Show Camera";
+                camera.Source = null;
+            }
+            else
+            {
+                btnShowCamera.Content = "Hide Camera";
+            }
+            showCamera = !showCamera;
+        }
     }
 }
