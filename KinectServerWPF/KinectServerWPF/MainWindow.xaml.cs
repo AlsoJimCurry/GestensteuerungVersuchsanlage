@@ -34,6 +34,8 @@ namespace KinectServerWPF
         static string targetTank = "-";
         static bool startPump = false;
 
+        ServerCommunication s = new ServerCommunication();
+
         #endregion
 
         public MainWindow()
@@ -175,6 +177,11 @@ namespace KinectServerWPF
                                     targetTank = selectTank(angleBetween(elbowRight - shoulderRight, spineBase - spineShoulder));
                                     tblTargetTank.Text = targetTank;
                                 }
+                                if (startPump)
+                                {
+                                    s.sendSoapWriteMessage(originTank, targetTank);
+                                }
+                                else { s.sendSoapWriteMessage(null, null); }
                             }
                         }
                     }
@@ -205,9 +212,9 @@ namespace KinectServerWPF
         // 70 - 110 -> tank 2
         // 110 - 150 -> tank 3
         {
-            if (armAngle >= 30 && armAngle < 70 || armAngle > 290 && armAngle <= 330) return "tank1";
-            if (armAngle >= 70 && armAngle < 110 || armAngle > 250 && armAngle <= 290) return "tank2";
-            if (armAngle >= 110 && armAngle < 150 || armAngle > 210 && armAngle <= 250) return "tank3";
+            if (armAngle >= 30 && armAngle < 70 || armAngle > 290 && armAngle <= 330) return "Tank 1";
+            if (armAngle >= 70 && armAngle < 110 || armAngle > 250 && armAngle <= 290) return "Tank 2";
+            if (armAngle >= 110 && armAngle < 150 || armAngle > 210 && armAngle <= 250) return "Tank 3";
             else return "-";
         }
 

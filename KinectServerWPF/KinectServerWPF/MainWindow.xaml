@@ -18,11 +18,11 @@
             <StackPanel Margin="20" >
                 <StackPanel>
                     <TextBlock Text="From:" Foreground="White" FontSize="30"></TextBlock>
-                    <TextBlock Name="tblOriginTank" Text="-" Foreground="White" FontSize="50"></TextBlock>
+                    <TextBlock Name="tblOriginTank" Text="-" Foreground="White" FontSize="40"></TextBlock>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Text="To:" Foreground="White" FontSize="30"></TextBlock>
-                    <TextBlock Name="tblTargetTank" Text="-" Foreground="White" FontSize="50"></TextBlock>
+                    <TextBlock Name="tblTargetTank" Text="-" Foreground="White" FontSize="40"></TextBlock>
                 </StackPanel>
                 <StackPanel Margin="0,20">
                     <TextBlock Text="Status:" Foreground="White" FontSize="30"></TextBlock>
