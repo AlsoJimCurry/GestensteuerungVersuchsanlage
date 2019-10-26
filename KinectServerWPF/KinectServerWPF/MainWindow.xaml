@@ -9,12 +9,13 @@
     <Grid>
         <Viewbox>
             <Grid Width="1920" Height="1080">
+                <Image Source="resources\Help.png" HorizontalAlignment="Left"></Image>
                 <Image Name="camera"/>
                 <Canvas Name="canvas"/>
-                <Button x:Name="btnShowCamera" Content="Show Camera" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="218" Height="91" Background="DeepSkyBlue" Foreground="White" FontSize="30" Click="btnShowCamera_Click" Margin="45,45,0,0"/>
+                <Button x:Name="btnShowCamera" Content="Show Camera" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Width="218" Height="91" Background="DeepSkyBlue" Foreground="White" FontSize="30" Click="btnShowCamera_Click" Margin="45,0,0,45"/>
             </Grid>
         </Viewbox>
-        <Grid HorizontalAlignment="Right" Width="394" Background="Black" Opacity="0.6">
+        <Grid HorizontalAlignment="Right" Width="400" Background="Black" Opacity="0.6">
             <StackPanel Margin="20" >
                 <StackPanel>
                     <TextBlock Text="From:" Foreground="White" FontSize="30"></TextBlock>
@@ -30,5 +31,6 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
+        <Button x:Name="btnHelp" Content="?" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="35" Height="34" Background="DeepSkyBlue" Foreground="White" FontSize="20" Margin="0,0,10,10" Click="btnHelp_Click"/>
     </Grid>
 </Window>

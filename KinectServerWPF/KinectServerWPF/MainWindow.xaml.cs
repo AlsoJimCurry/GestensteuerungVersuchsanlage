@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Kinect;
 using System.Windows.Media.Media3D;
 
@@ -33,6 +24,7 @@ namespace KinectServerWPF
         static string originTank = "-";
         static string targetTank = "-";
         static bool startPump = false;
+        static bool succes;
 
         ServerCommunication s = new ServerCommunication();
 
@@ -179,9 +171,10 @@ namespace KinectServerWPF
                                 }
                                 if (startPump)
                                 {
-                                    s.sendSoapWriteMessage(originTank, targetTank);
+                                    succes = s.sendSoapWriteMessage(originTank, targetTank);
                                 }
-                                else { s.sendSoapWriteMessage(null, null); }
+                                else { succes = s.sendSoapWriteMessage(null, null); }
+                                if (!succes) tblPumpStatus.Text = "No connection to server";
                             }
                         }
                     }
@@ -232,5 +225,12 @@ namespace KinectServerWPF
             }
             showCamera = !showCamera;
         }
+
+        private void btnHelp_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Kontrollieren Sie die Versuchsanlage mit Hilfe Ihrer Arme.\nWählen Sie dazu mit Ihrem linken Arm den Starttank aus und mit Ihrem rechten Arm den Zieltank.\n" +
+                "Um den Pumpvorgang zu starten öffnen Sie beide Hände.\nSobald eine Hand geschlossen wird, wird der Pumpvorgang gestoppt.", "Help");
+        }
+
     }
 }

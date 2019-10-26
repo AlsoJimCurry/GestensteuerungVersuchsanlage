@@ -42,7 +42,7 @@ namespace KinectServerWPF
             return soapMessage;
         }
 
-        public void sendSoapWriteMessage(string originTank, string targetTank)
+        public bool sendSoapWriteMessage(string originTank, string targetTank)
         {
             string soapResult = "-";
 
@@ -85,21 +85,24 @@ namespace KinectServerWPF
             HttpWebRequest request = CreaeWebRequest();
             XmlDocument soapEnvelopeXml = new XmlDocument();
             soapEnvelopeXml.LoadXml(getSoapWriteMessage(from, to));
-
-            using (Stream stream = request.GetRequestStream())
-            {
-                soapEnvelopeXml.Save(stream);
-            }
-            using (WebResponse response = request.GetResponse())
-            {
-                using (StreamReader rd = new StreamReader(response.GetResponseStream()))
+            try { 
+                using (Stream stream = request.GetRequestStream())
                 {
-                    soapResult = rd.ReadToEnd();
+                    soapEnvelopeXml.Save(stream);
+                }
+                using (WebResponse response = request.GetResponse())
+                {
+                    using (StreamReader rd = new StreamReader(response.GetResponseStream()))
+                    {
+                        soapResult = rd.ReadToEnd();
+                        return true;
+                    }
                 }
             }
-            XmlDocument result = new XmlDocument();
-            result.LoadXml(soapResult);
-            result.Save("reult.xml");
+            catch (System.Net.WebException)
+            {
+                return false;
+            }
         }
 
         private HttpWebRequest CreaeWebRequest()
