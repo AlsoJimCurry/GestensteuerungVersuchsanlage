@@ -251,6 +251,11 @@ namespace KinectServerWPF
                 tblLevel1.Text = "Tank 1: " + level1;
                 tblLevel2.Text = "Tank 2: " + level2;
                 tblLevel3.Text = "Tank 3: " + level3;
+
+                // Controll tank viz
+                tank1.Height = Double.Parse(level1)*2;
+                tank2.Height = Double.Parse(level2)*2;
+                tank3.Height = Double.Parse(level3)*2;
             }
         }
 
@@ -264,6 +269,7 @@ namespace KinectServerWPF
             else
             {
                 btnShowCamera.Content = "Hide Camera";
+
             }
             showCamera = !showCamera;
         }
@@ -274,5 +280,20 @@ namespace KinectServerWPF
                 "Um den Pumpvorgang zu starten öffnen Sie beide Hände.\nSobald eine Hand geschlossen wird, wird der Pumpvorgang gestoppt.", "Help");
         }
 
+        private void btnShowTanks_Click(object sender, RoutedEventArgs e)
+        {
+            if (TankViz.Visibility == Visibility.Hidden)
+            {
+                TankViz.Visibility = Visibility.Visible;
+                btnShowTanks.Content = "Hide Tanks";
+            }
+            else
+            {
+                TankViz.Visibility = Visibility.Hidden;
+                btnShowTanks.Content = "Show Tanks";
+            }
+            
+
+        }
     }
 }
