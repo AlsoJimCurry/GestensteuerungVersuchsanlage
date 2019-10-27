@@ -54,29 +54,19 @@ namespace KinectServerWPF
         {
             var reference = e.FrameReference.AcquireFrame();
 
-            // Camera
-            using (var frame = reference.ColorFrameReference.AcquireFrame())
+
+            // Recieve and send process information
+            if (frameCounter % 30 == 0)
+            // To avoid spamming the server
             {
-                if (frame != null && showCamera)
-                {
-                    int width = frame.FrameDescription.Width;
-                    int height = frame.FrameDescription.Height;
-                    PixelFormat format = PixelFormats.Bgr32;
-            
-                    byte[] pixels = new byte[width * height * ((format.BitsPerPixel + 7) / 8)];
-                    if (frame.RawColorImageFormat == ColorImageFormat.Bgra)
-                    {
-                        frame.CopyRawFrameDataToArray(pixels);
-                    }
-                    else
-                    {
-                        frame.CopyConvertedFrameDataToArray(pixels, ColorImageFormat.Bgra);
-                    }
-                    int stride = width * format.BitsPerPixel / 8;
-            
-                    camera.Source = BitmapSource.Create(width, height, 96, 96, format, null, pixels, stride);
-                }
+                communicateWithServer();
+                if (frameCounter >= 100000) frameCounter = 30;
             }
+            frameCounter++;
+
+            // Camera
+            if (showCamera) getCameraImage(reference);
+           
             
             // Body
             using ( var frame = reference.BodyFrameReference.AcquireFrame())
@@ -171,19 +161,41 @@ namespace KinectServerWPF
                                     // Target
                                     targetTank = selectTank(angleBetween(elbowRight - shoulderRight, spineBase - spineShoulder));
                                     tblTargetTank.Text = targetTank;
-                                }
-                                if (frameCounter % 100 == 0)
-                                // To avoid spamming the server
-                                {
-                                    communicateWithServer();
-                                }
-                                frameCounter++;
+                                }                              
                             }
                         }
                     }
                 }
             }
         }
+
+
+        private void getCameraImage(MultiSourceFrame reference)
+        {
+            using (var frame = reference.ColorFrameReference.AcquireFrame())
+            {
+                if (frame != null)
+                {
+                    int width = frame.FrameDescription.Width;
+                    int height = frame.FrameDescription.Height;
+                    PixelFormat format = PixelFormats.Bgr32;
+
+                    byte[] pixels = new byte[width * height * ((format.BitsPerPixel + 7) / 8)];
+                    if (frame.RawColorImageFormat == ColorImageFormat.Bgra)
+                    {
+                        frame.CopyRawFrameDataToArray(pixels);
+                    }
+                    else
+                    {
+                        frame.CopyConvertedFrameDataToArray(pixels, ColorImageFormat.Bgra);
+                    }
+                    int stride = width * format.BitsPerPixel / 8;
+
+                    camera.Source = BitmapSource.Create(width, height, 96, 96, format, null, pixels, stride);
+                }
+            }
+        }
+
         public bool isArmStretched(Vector3D wrist, Vector3D elbow, Vector3D shoulder)
         // Return whether the arm is reasonably stretched
         {

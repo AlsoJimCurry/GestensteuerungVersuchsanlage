@@ -9,9 +9,42 @@
     <Grid>
         <Viewbox>
             <Grid Width="1920" Height="1080">
-                <Image Source="resources\Help.png" HorizontalAlignment="Left"></Image>
+                <Image Source="resources\Help.png" HorizontalAlignment="Left" Visibility="Hidden"></Image>
                 <Image Name="camera"/>
                 <Canvas Name="canvas"/>
+                <StackPanel>
+                    <Grid Width="600" Height="700" HorizontalAlignment="Left" Margin="350,0,0,0" >
+                        <Rectangle
+                            x:Name="tank1"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Left"
+                            Margin="20"
+                            Width="100"
+                            Height="300"
+                            Fill="DeepSkyBlue">
+                        </Rectangle>
+                            <Rectangle
+                            x:Name="tank2"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Left"
+                            Margin="220, 0,0,20"
+                            Width="100"
+                            Height="500"
+                            Fill="DeepSkyBlue">
+                            </Rectangle>
+                        <Rectangle
+                            x:Name="tank3"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Left"
+                            Margin="420, 0,0,20"
+                            Width="100"
+                            Height="200"
+                            Fill="DeepSkyBlue">
+                        </Rectangle>
+                    </Grid>
+                </StackPanel>
+
+                
                 <Button x:Name="btnShowCamera" Content="Show Camera" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Width="218" Height="91" Background="DeepSkyBlue" Foreground="White" FontSize="30" Click="btnShowCamera_Click" Margin="45,0,0,45"/>
             </Grid>
         </Viewbox>
