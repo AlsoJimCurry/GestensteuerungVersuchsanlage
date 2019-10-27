@@ -42,6 +42,32 @@ namespace KinectServerWPF
             return soapMessage;
         }
 
+        private string getSoapReadMessage()
+        {
+            string soapMessage = @"<SOAP-ENV:Envelope xmlns:SOAP-ENV=""http://schemas.xmlsoap.org/soap/envelope/"" " +
+            @"                   xmlns:SOAP-ENC=""http://schemas.xmlsoap.org/soap/encoding/"" " +
+            @"                   xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" " +
+            @"                   xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">" +
+            @"  <SOAP-ENV:Body>" +
+            @"    <m:Read xmlns:m=""http://opcfoundation.org/webservices/XMLDA/1.0/"">" +
+            @"      <m:Options ReturnErrorText=""false"" ReturnDiagnosticInfo=""false"" ReturnItemTime=""false"" ReturnItemPath=""false"" ReturnItemName=""true""/>" +
+            @"      <m:ItemList>" +
+            @"        <m:Items ItemName=""Schneider/Fuellstand1_Ist""/>" +
+            @"        <m:Items ItemName=""Schneider/Fuellstand2_Ist""/>" +
+            @"        <m:Items ItemName=""Schneider/Fuellstand3_Ist""/>" +
+            @"        <m:Items ItemName=""Schneider/LH1""/>" +
+            @"        <m:Items ItemName=""Schneider/LH2""/>" +
+            @"        <m:Items ItemName=""Schneider/LH3""/>" +
+            @"        <m:Items ItemName=""Schneider/LL1""/>" +
+            @"        <m:Items ItemName=""Schneider/LL2""/>" +
+            @"        <m:Items ItemName=""Schneider/LL3""/>" +
+            @"      </m:ItemList>" +
+            @"    </m:Read>" +
+            @"  </SOAP-ENV:Body>" +
+            @"</SOAP-ENV:Envelope>";
+            return soapMessage;
+        }
+
         public bool sendSoapWriteMessage(string originTank, string targetTank, int start)
         {
             string soapResult = "-";
@@ -104,6 +130,40 @@ namespace KinectServerWPF
             {
                 return false;
             }
+        }
+
+        public List<string> sendSoapReadMessage()
+        {
+            string soapResult;
+            string action = @"""http://opcfoundation.org/webservices/XMLDA/1.0/Read""";
+            List<string> levels = new List<string>();
+
+            HttpWebRequest request = CreaeWebRequest(action);
+            XmlDocument soapEnvelopeXml = new XmlDocument();
+            soapEnvelopeXml.LoadXml(getSoapReadMessage());
+            try
+            {
+                using (Stream stream = request.GetRequestStream())
+                {
+                    soapEnvelopeXml.Save(stream);
+                }
+                using (WebResponse response = request.GetResponse())
+                {
+                    using (StreamReader rd = new StreamReader(response.GetResponseStream()))
+                    {
+                        soapResult = rd.ReadToEnd();
+                        XmlDocument answer = new XmlDocument();
+                        answer.LoadXml(soapResult);
+
+                        var items = answer.GetElementsByTagName("Items");
+                        levels.Add(items[0].FirstChild.FirstChild.Value);
+                        levels.Add(items[1].FirstChild.FirstChild.Value);
+                        levels.Add(items[2].FirstChild.FirstChild.Value);
+                    }
+                }
+            }
+            catch (System.Net.WebException){ }
+            return levels;
         }
 
         private HttpWebRequest CreaeWebRequest(string action)

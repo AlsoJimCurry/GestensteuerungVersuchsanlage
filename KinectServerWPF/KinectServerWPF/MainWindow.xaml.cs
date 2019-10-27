@@ -216,16 +216,31 @@ namespace KinectServerWPF
 
         public void communicateWithServer()
         {
+            List<string> tankLevels = s.sendSoapReadMessage();
+
+            showLevels(tankLevels);
 
             if (startPump)
             {
                 succes = s.sendSoapWriteMessage(originTank, targetTank, 1);
             }
             else { succes = s.sendSoapWriteMessage(null, null, 0); }
-            if (!succes) tblPumpStatus.Text = "No connection to server";
-       
+            if (!succes) tblPumpStatus.Text = "No connection to server";   
         }
 
+        private void showLevels(List<string> tankLevels)
+        {
+            if(tankLevels.Count == 3)
+            {
+                string level1 = tankLevels[0];
+                string level2 = tankLevels[1];
+                string level3 = tankLevels[2];
+
+                tblLevel1.Text = "Tank 1: " + level1;
+                tblLevel2.Text = "Tank 2: " + level2;
+                tblLevel3.Text = "Tank 3: " + level3;
+            }
+        }
 
         private void btnShowCamera_Click(object sender, RoutedEventArgs e)
         {
