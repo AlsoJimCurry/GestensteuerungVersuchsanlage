@@ -5,6 +5,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Kinect;
 using System.Windows.Media.Media3D;
+using System.Threading.Tasks;
 
 namespace KinectServerWPF
 {
@@ -25,6 +26,8 @@ namespace KinectServerWPF
         static string targetTank = "-";
         static bool startPump = false;
         static bool succes;
+
+        static int frameCounter = 0;
 
         ServerCommunication s = new ServerCommunication();
 
@@ -169,12 +172,12 @@ namespace KinectServerWPF
                                     targetTank = selectTank(angleBetween(elbowRight - shoulderRight, spineBase - spineShoulder));
                                     tblTargetTank.Text = targetTank;
                                 }
-                                if (startPump)
+                                if (frameCounter % 100 == 0)
+                                // To avoid spamming the server
                                 {
-                                    succes = s.sendSoapWriteMessage(originTank, targetTank);
+                                    communicateWithServer();
                                 }
-                                else { succes = s.sendSoapWriteMessage(null, null); }
-                                if (!succes) tblPumpStatus.Text = "No connection to server";
+                                frameCounter++;
                             }
                         }
                     }
@@ -209,6 +212,18 @@ namespace KinectServerWPF
             if (armAngle >= 70 && armAngle < 110 || armAngle > 250 && armAngle <= 290) return "Tank 2";
             if (armAngle >= 110 && armAngle < 150 || armAngle > 210 && armAngle <= 250) return "Tank 3";
             else return "-";
+        }
+
+        public void communicateWithServer()
+        {
+
+            if (startPump)
+            {
+                succes = s.sendSoapWriteMessage(originTank, targetTank, 1);
+            }
+            else { succes = s.sendSoapWriteMessage(null, null, 0); }
+            if (!succes) tblPumpStatus.Text = "No connection to server";
+       
         }
 
 

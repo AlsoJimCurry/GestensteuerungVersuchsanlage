@@ -15,7 +15,7 @@ namespace KinectServerWPF
         // URL of the OPC XML DA server that delivers the values
         string xmldaUrl = "http://141.30.154.211:8087/OPC/DA";
 
-        private string getSoapWriteMessage(int from, int to)
+        private string getSoapWriteMessage(int from, int to, int start)
         {
             string soapMessage = @"<SOAP-ENV:Envelope xmlns:SOAP-ENV=""http://schemas.xmlsoap.org/soap/envelope/"" " +
             @"                   xmlns:SOAP-ENC=""http://schemas.xmlsoap.org/soap/encoding/"" " +
@@ -32,7 +32,7 @@ namespace KinectServerWPF
             @"		   <m:Value xsi:type=""xsd:int"">" + to + "</m:Value>" +
             @"		 </m:Items>" +
             @"        <m:Items ItemName=""Schneider/Start_Umpumpen_FL"">" +
-            @"		   <m:Value xsi:type=""xsd:boolean"">0</m:Value>" +
+            @"		   <m:Value xsi:type=""xsd:boolean"">"+ start + "</m:Value>" +
             @"		 </m:Items>" +
             @"      </m:ItemList>" +
             @"    </m:Write>" +
@@ -42,9 +42,10 @@ namespace KinectServerWPF
             return soapMessage;
         }
 
-        public bool sendSoapWriteMessage(string originTank, string targetTank)
+        public bool sendSoapWriteMessage(string originTank, string targetTank, int start)
         {
             string soapResult = "-";
+            string action = @"""http://opcfoundation.org/webservices/XMLDA/1.0/Write""";
 
             #region tank number
             int from = 1, to = 1;
@@ -63,7 +64,7 @@ namespace KinectServerWPF
                     from = 0;
                     break;
             }
-
+            
             switch (targetTank)
             {
                 case "Tank 1":
@@ -78,13 +79,13 @@ namespace KinectServerWPF
                 default:
                     to = 0;
                     break;
-
+            
             }
             #endregion
 
-            HttpWebRequest request = CreaeWebRequest();
+            HttpWebRequest request = CreaeWebRequest(action);
             XmlDocument soapEnvelopeXml = new XmlDocument();
-            soapEnvelopeXml.LoadXml(getSoapWriteMessage(from, to));
+            soapEnvelopeXml.LoadXml(getSoapWriteMessage(from, to, start));
             try { 
                 using (Stream stream = request.GetRequestStream())
                 {
@@ -105,10 +106,10 @@ namespace KinectServerWPF
             }
         }
 
-        private HttpWebRequest CreaeWebRequest()
+        private HttpWebRequest CreaeWebRequest(string action)
         {
             HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(xmldaUrl);
-            webRequest.Headers.Add("SOAPAction", @"""http://opcfoundation.org/webservices/XMLDA/1.0/Write""");
+            webRequest.Headers.Add("SOAPAction", action);
             webRequest.Method = "POST";
             return webRequest;
         }
