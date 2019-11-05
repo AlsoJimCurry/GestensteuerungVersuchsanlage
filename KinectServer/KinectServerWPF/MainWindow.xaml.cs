@@ -83,6 +83,7 @@ namespace KinectServerWPF
                             bool rightHandOpen = false;
                             bool leftHandOpen = false;
 
+                            #region Find Handstates
                             switch (body.HandRightState)
                             {
                                 case HandState.Open:
@@ -109,13 +110,18 @@ namespace KinectServerWPF
                                     break;
                             }
 
-                            if (rightHandOpen && leftHandOpen) startPump = true;
-                            else startPump = false;
+                            if (rightHandOpen && leftHandOpen)
+                            {
+                                startPump = true;
+                                tblPumpStatus.Text = "Pumping";
+                            }
+                            else 
+                            {
+                                startPump = false;
+                                tblPumpStatus.Text = "Pump stopped";
+                            }
+                            #endregion
 
-                            if (startPump) tblPumpStatus.Text = "Pumping";
-                            else tblPumpStatus.Text = "Pump stopped";
-    
-                          
 
                             // Find arm position
                             // Find required joints
@@ -177,7 +183,7 @@ namespace KinectServerWPF
                     int height = frame.FrameDescription.Height;
                     PixelFormat format = PixelFormats.Bgr32;
 
-                    byte[] pixels = new byte[width * height * ((format.BitsPerPixel + 7) / 8)];
+                    byte[] pixels = new byte[width * height * ((format.BitsPerPixel  + 7) / 8)];
                     if (frame.RawColorImageFormat == ColorImageFormat.Bgra)
                     {
                         frame.CopyRawFrameDataToArray(pixels);
@@ -197,7 +203,7 @@ namespace KinectServerWPF
         // Return whether the arm is reasonably stretched
         {
             double armAngle = angleBetween(wrist - elbow, shoulder - elbow);
-            if (armAngle > 150 || armAngle < 210) return true;
+            if (armAngle > 160) return true;
             else return false;
         }
 
@@ -234,7 +240,7 @@ namespace KinectServerWPF
                 succes = s.sendSoapWriteMessage(originTank, targetTank, 1);
             }
             else { succes = s.sendSoapWriteMessage(null, null, 0); }
-            if (!succes) tblPumpStatus.Text = "No connection to server";   
+            if (!succes) tblPumpStatus.Text = "No connection to server";
         }
 
         private void showLevels(List<string> tankLevels)
@@ -317,7 +323,7 @@ namespace KinectServerWPF
 
         private void btnHelp_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Kontrollieren Sie die Versuchsanlage mit Hilfe Ihrer Arme.\nWählen Sie dazu mit Ihrem linken Arm den Starttank aus und mit Ihrem rechten Arm den Zieltank.\n" +
+            MessageBox.Show("Kontrollieren Sie die Versuchsanlage mit Hilfe Ihrer Arme.\nWählen Sie dazu mit Ihrem linken Arm den Starttank aus und mit Ihrem rechten Arm den Zieltank. Beachten Sie, dass der Arm zur Auswahl eines Tanks gestreckt sein muss.\n" +
                 "Um den Pumpvorgang zu starten öffnen Sie beide Hände.\nSobald eine Hand geschlossen wird, wird der Pumpvorgang gestoppt.\n\nErscheint ein Tank rot, wurde eine kritische Füllhöhe erreicht.", "Help");
         }
 

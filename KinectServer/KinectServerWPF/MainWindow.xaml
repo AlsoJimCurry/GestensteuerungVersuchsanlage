@@ -15,38 +15,44 @@
                 <StackPanel x:Name="TankViz" Background="DimGray" Visibility="Hidden">
                     <Grid Width="900" Height="720" HorizontalAlignment="Left"  Margin="200,80,0,0">
                         <Grid Width="300" HorizontalAlignment="Left">
-                            <Rectangle
-                            x:Name="tank1"
-                            VerticalAlignment="Bottom"
-                            HorizontalAlignment="Center"
-                            Width="150"
-                            Height="20"
-                            Fill="DeepSkyBlue">
-                            </Rectangle>
+                            <Border BorderBrush="Black" BorderThickness="5" Width="150" Margin="0,145,0,0">
+                                <Rectangle
+                                    x:Name="tank1"
+                                    VerticalAlignment="Bottom"
+                                    HorizontalAlignment="Center"
+                                    Width="150"
+                                    Height="20"
+                                    Fill="DeepSkyBlue">
+                                </Rectangle>
+                            </Border>
                             <Label Content="Tank 1" HorizontalAlignment="Center" FontSize="60" Foreground="LightGray"></Label>
                             <Label Name="lblTank1" Content="-" HorizontalAlignment="Center" FontSize="40" Foreground="LightGray" Margin="0,70,0,0"></Label>
                         </Grid>
-                        <Grid Width="300" >
-                            <Rectangle
-                            x:Name="tank2"
-                            VerticalAlignment="Bottom"
-                            HorizontalAlignment="Center"
-                            Width="150"
-                            Height="20"
-                            Fill="DeepSkyBlue">
-                            </Rectangle>
+                        <Grid Width="300">
+                            <Border BorderBrush="Black" BorderThickness="5" Width="150" Margin="0,145,0,0">
+                                <Rectangle
+                                    x:Name="tank2"
+                                    VerticalAlignment="Bottom"
+                                    HorizontalAlignment="Center"
+                                    Width="150"
+                                    Height="20"
+                                    Fill="DeepSkyBlue">
+                                </Rectangle>
+                            </Border>
                             <Label Content="Tank 2" HorizontalAlignment="Center" FontSize="60" Foreground="LightGray"></Label>
                             <Label Name="lblTank2" Content="-" HorizontalAlignment="Center" FontSize="40" Foreground="LightGray" Margin="0,70,0,0"></Label>
                         </Grid>
                         <Grid Width="300" HorizontalAlignment="Right">
-                            <Rectangle
-                            x:Name="tank3"
-                            VerticalAlignment="Bottom"
-                            HorizontalAlignment="Center"
-                            Width="150"
-                            Height="20"
-                            Fill="DeepSkyBlue">
-                            </Rectangle>
+                            <Border BorderBrush="Black" BorderThickness="5" Width="150" Margin="0,145,0,0">
+                                <Rectangle
+                                    x:Name="tank3"
+                                    VerticalAlignment="Bottom"
+                                    HorizontalAlignment="Center"
+                                    Width="150"
+                                    Height="20"
+                                    Fill="DeepSkyBlue">
+                                </Rectangle>
+                            </Border>
                             <Label Content="Tank 3" HorizontalAlignment="Center" FontSize="60" Foreground="LightGray"></Label>
                             <Label Name="lblTank3" Content="-" HorizontalAlignment="Center" FontSize="40" Foreground="LightGray" Margin="0,70,0,0"></Label>
                         </Grid>      

@@ -14,3 +14,4 @@ C:\Users\Jim\Desktop\KinectSteuerung\KinectServer\KinectServerWPF\obj\Release\Ki
 C:\Users\Jim\Desktop\KinectSteuerung\KinectServer\KinectServerWPF\obj\Release\KinectSteuerung.csproj.CopyComplete
 C:\Users\Jim\Desktop\KinectSteuerung\KinectServer\KinectServerWPF\obj\Release\KinectServerWPF.exe
 C:\Users\Jim\Desktop\KinectSteuerung\KinectServer\KinectServerWPF\obj\Release\KinectServerWPF.pdb
+C:\Users\Jim\Desktop\KinectSteuerung\KinectServer\KinectServerWPF\obj\Release\KinectSteuerung.csprojAssemblyReference.cache
