@@ -78,39 +78,8 @@ namespace KinectServerWPF
                     {
                         if (body.IsTracked)
                         {
-
-                            //Find hand states
-                            bool rightHandOpen = false;
-                            bool leftHandOpen = false;
-
                             #region Find Handstates
-                            switch (body.HandRightState)
-                            {
-                                case HandState.Open:
-                                    rightHandOpen = true;
-                                    break;
-                                case HandState.Closed:
-                                    rightHandOpen = false;
-                                    break;
-                                default:
-                                    rightHandOpen = false; // To avoid pumping unintended
-                                    break;
-                            }
-
-                            switch (body.HandLeftState)
-                            {
-                                case HandState.Open:
-                                    leftHandOpen = true;
-                                    break;
-                                case HandState.Closed:
-                                    leftHandOpen = false;
-                                    break;
-                                default:
-                                    leftHandOpen = false; 
-                                    break;
-                            }
-
-                            if (rightHandOpen && leftHandOpen)
+                            if (body.HandRightState == HandState.Open && body.HandLeftState == HandState.Open)
                             {
                                 startPump = true;
                                 tblPumpStatus.Text = "Pumping";
@@ -295,9 +264,9 @@ namespace KinectServerWPF
 
         }
 
-        private void startWarning(Rectangle tank1)
+        private void startWarning(Rectangle tank)
         {
-            tank1.Fill = Brushes.Red;
+            tank.Fill = Brushes.Red;
         }
 
         private void stopWarning(Rectangle tank)
