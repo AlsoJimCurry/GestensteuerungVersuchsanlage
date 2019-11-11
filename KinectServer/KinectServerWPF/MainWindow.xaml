@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KinectServerWPF"
         mc:Ignorable="d"
-        Title="Kinect Control" Height="700" Width="1200" Loaded="Window_Loaded">
+        Title="Kinect Control" Height="700" Width="1200" Loaded="Window_Loaded"
+        MinHeight="700" MinWidth="1200" ResizeMode="CanResize"
+        >
     <Grid Background="DimGray">
-        <Viewbox>
+        <Viewbox Stretch="UniformToFill">
             <Grid Width="1920" Height="1080">
-                <Image Source="resources\Help.png" HorizontalAlignment="Left"></Image>
-                <Image Name="camera"/>
-                <Canvas Name="canvas"/>
+                <Image Source="resources\Help.png" HorizontalAlignment="Left" Stretch="None"></Image>
+                <Image Name="camera" Stretch="Fill"/>
                 <StackPanel x:Name="TankViz" Background="DimGray" Visibility="Hidden">
                     <Grid Width="900" Height="720" HorizontalAlignment="Left"  Margin="200,80,0,0">
                         <Grid Width="300" HorizontalAlignment="Left">
@@ -55,12 +56,9 @@
                             </Border>
                             <Label Content="Tank 3" HorizontalAlignment="Center" FontSize="60" Foreground="LightGray"></Label>
                             <Label Name="lblTank3" Content="-" HorizontalAlignment="Center" FontSize="40" Foreground="LightGray" Margin="0,70,0,0"></Label>
-                        </Grid>      
+                        </Grid>
                     </Grid>
                 </StackPanel>
-
-                <Button x:Name="btnShowTanks" Content="Show Tanks" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Width="218" Height="91" Background="DeepSkyBlue" Foreground="White" FontSize="30" Click="btnShowTanks_Click" Margin="45,0,0,150"/>
-                <Button x:Name="btnShowCamera" Content="Show Camera" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Width="218" Height="91" Background="DeepSkyBlue" Foreground="White" FontSize="30" Click="btnShowCamera_Click" Margin="45,0,0,45"/>
             </Grid>
         </Viewbox>
         <Grid HorizontalAlignment="Right" Width="400" Background="Black" Opacity="0.6">
@@ -83,6 +81,10 @@
                     <TextBlock Text="Tank3: -" Name="tblLevel3" Foreground="White" FontSize="20"></TextBlock>
                 </StackPanel>
             </StackPanel>
+        </Grid>
+        <Grid>
+                <Button x:Name="btnShowTanks" Content="Show Tanks" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Width="145" Height="65" Background="DeepSkyBlue" Foreground="White" FontSize="19" Click="btnShowTanks_Click" Margin="20,0,0,100"/>
+                <Button x:Name="btnShowCamera" Content="Show Camera" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Width="145" Height="65" Background="DeepSkyBlue" Foreground="White" FontSize="19" Click="btnShowCamera_Click" Margin="20,0,0,20"/>
         </Grid>
         <Button x:Name="btnHelp" Content="?" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="35" Height="34" Background="DeepSkyBlue" Foreground="White" FontSize="20" Margin="0,0,10,10" Click="btnHelp_Click"/>
     </Grid>

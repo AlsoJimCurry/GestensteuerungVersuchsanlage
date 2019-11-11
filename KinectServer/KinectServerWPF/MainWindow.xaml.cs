@@ -192,9 +192,9 @@ namespace KinectServerWPF
         // 70 - 110 -> tank 2
         // 110 - 150 -> tank 3
         {
-            if (armAngle >= 30 && armAngle < 70 || armAngle > 290 && armAngle <= 330) return "Tank 1";
-            if (armAngle >= 70 && armAngle < 110 || armAngle > 250 && armAngle <= 290) return "Tank 2";
-            if (armAngle >= 110 && armAngle < 150 || armAngle > 210 && armAngle <= 250) return "Tank 3";
+            if (armAngle >= 30 && armAngle < 70) return "Tank 1";
+            if (armAngle >= 70 && armAngle < 110) return "Tank 2";
+            if (armAngle >= 110 && armAngle < 150) return "Tank 3";
             else return "-";
         }
 
@@ -229,13 +229,13 @@ namespace KinectServerWPF
                 string level3Low = tankLevels[8];
 
                 tblLevel1.Text = "Tank 1: " + level1;
-                lblTank1.Content = level1.Substring(0,5);
+                lblTank1.Content = level1;
 
                 tblLevel2.Text = "Tank 2: " + level2;
-                lblTank2.Content = level2.Substring(0, 5);
+                lblTank2.Content = level2;
 
                 tblLevel3.Text = "Tank 3: " + level3;
-                lblTank3.Content = level3.Substring(0, 5);
+                lblTank3.Content = level3;
 
                 double lvl1 = Double.Parse(level1.Replace(".", ","));
                 double lvl2 = Double.Parse(level2.Replace(".", ","));
