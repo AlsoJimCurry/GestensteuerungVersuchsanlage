@@ -13,50 +13,25 @@
             <Grid Width="1920" Height="1080">
                 <Image Source="resources\Help.png" HorizontalAlignment="Left" Stretch="None"></Image>
                 <Image Name="camera" Stretch="Fill"/>
-                <StackPanel x:Name="TankViz" Background="DimGray" Visibility="Visible">
+                <StackPanel x:Name="TankViz" Background="DimGray" Visibility="Hidden">
                     <Grid Width="900" Height="720" HorizontalAlignment="Left"  Margin="200,80,0,0">
-                        <Grid Width="300" HorizontalAlignment="Left">
-                            <Border BorderBrush="Black" BorderThickness="5" Width="150" Margin="0,145,0,0" CornerRadius="40">
-                                <Rectangle
-                                    x:Name="tank1"
-                                    VerticalAlignment="Bottom"
-                                    HorizontalAlignment="Center"
-                                    Width="150"
-                                    Height="20"
-                                    Fill="DeepSkyBlue">
-                                </Rectangle>
-                            </Border>
-                            <Label Content="Tank 1" HorizontalAlignment="Center" FontSize="60" Foreground="LightGray"></Label>
-                            <Label Name="lblTank1" Content="-" HorizontalAlignment="Center" FontSize="40" Foreground="LightGray" Margin="0,70,0,0"></Label>
+                        <Grid Width="300" HorizontalAlignment="Left">                            
+                            <Border Name="tank1"  Width="150" Height="40" CornerRadius="0,0,40,40" Background="DeepSkyBlue" VerticalAlignment="Bottom" Margin="0,0,0,4"></Border>
+                            <Border BorderBrush="Black" BorderThickness="5" Width="150" Height="550" CornerRadius="40" VerticalAlignment="Bottom"></Border>
+                            <Label Content="Tank 1" HorizontalAlignment="Center" FontSize="60" Foreground="#FFF0F0F0"></Label>
+                            <Label Name="lblTank1" Content="-" HorizontalAlignment="Center" FontSize="40" Foreground="#FFF0F0F0" Margin="0,70,0,0"></Label>
                         </Grid>
                         <Grid Width="300">
-                            <Border BorderBrush="Black" BorderThickness="5" Width="150" Margin="0,145,0,0">
-                                <Rectangle
-                                    x:Name="tank2"
-                                    VerticalAlignment="Bottom"
-                                    HorizontalAlignment="Center"
-                                    Width="150"
-                                    Height="20"
-                                    Fill="DeepSkyBlue">
-                                </Rectangle>
-                            </Border>
-                            <Label Content="Tank 2" HorizontalAlignment="Center" FontSize="60" Foreground="LightGray"></Label>
-                            <Label Name="lblTank2" Content="-" HorizontalAlignment="Center" FontSize="40" Foreground="LightGray" Margin="0,70,0,0"></Label>
+                            <Border Name="tank2"  Width="150" Height="40" CornerRadius="0,0,40,40" Background="DeepSkyBlue" VerticalAlignment="Bottom" Margin="0,0,0,4"></Border>
+                            <Border BorderBrush="Black" BorderThickness="5" Width="150" Height="550" CornerRadius="40" VerticalAlignment="Bottom" ></Border>
+                            <Label Content="Tank 2" HorizontalAlignment="Center" FontSize="60" Foreground="#FFF0F0F0"></Label>
+                            <Label Name="lblTank2" Content="-" HorizontalAlignment="Center" FontSize="40" Foreground="#FFF0F0F0" Margin="0,70,0,0"></Label>
                         </Grid>
                         <Grid Width="300" HorizontalAlignment="Right">
-                            <Border BorderBrush="Black" BorderThickness="5" Width="150" Margin="0,145,0,0">
-                                <Rectangle
-                                    x:Name="tank3"
-                                    VerticalAlignment="Bottom"
-                                    HorizontalAlignment="Center"
-                                    Width="150"
-                                    Height="20"
-                                    Fill="DeepSkyBlue"
-                                    >
-                                </Rectangle>
-                            </Border>
-                            <Label Content="Tank 3" HorizontalAlignment="Center" FontSize="60" Foreground="LightGray"></Label>
-                            <Label Name="lblTank3" Content="-" HorizontalAlignment="Center" FontSize="40" Foreground="LightGray" Margin="0,70,0,0"></Label>
+                            <Border Name="tank3"  Width="150" Height="40" CornerRadius="0,0,40,40" Background="DeepSkyBlue" VerticalAlignment="Bottom" Margin="0,0,0,4"></Border>
+                            <Border BorderBrush="Black" BorderThickness="5" Width="150" Height="550" CornerRadius="40" VerticalAlignment="Bottom" ></Border>
+                            <Label Content="Tank 3" HorizontalAlignment="Center" FontSize="60" Foreground="#FFF0F0F0"></Label>
+                            <Label Name="lblTank3" Content="-" HorizontalAlignment="Center" FontSize="40" Foreground="#FFF0F0F0" Margin="0,70,0,0"></Label>
                         </Grid>
                     </Grid>
                 </StackPanel>
@@ -84,8 +59,8 @@
             </StackPanel>
         </Grid>
         <Grid>
-            <Button Style="{DynamicResource RoundCorner}" x:Name="btnShowTanks"  Content="Show Tanks" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Width="145" Height="65" Background="DeepSkyBlue" Foreground="White" FontSize="19" Click="btnShowTanks_Click" Margin="20,0,0,100" />
-            <Button Style="{DynamicResource RoundCorner}" x:Name="btnShowCamera" Content="Show Camera" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Width="145" Height="65" Background="DeepSkyBlue" Foreground="White" FontSize="19" Click="btnShowCamera_Click" Margin="20,0,0,20"/>
+            <Button Style="{DynamicResource RoundCorner}" x:Name="btnShowTanks"  Content="Show Tanks" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Width="145" Height="65" Background="DeepSkyBlue" Foreground="White" FontSize="21" Click="btnShowTanks_Click" Margin="20,0,0,100" />
+            <Button Style="{DynamicResource RoundCorner}" x:Name="btnShowCamera" Content="Show Camera" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Width="145" Height="65" Background="DeepSkyBlue" Foreground="White" FontSize="21" Click="btnShowCamera_Click" Margin="20,0,0,20"/>
         </Grid>
         <Button Style="{DynamicResource RoundCorner}" x:Name="btnHelp" Content="?" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="35" Height="34" Background="DeepSkyBlue" Foreground="White" FontSize="20" Margin="0,0,10,10" Click="btnHelp_Click"/>
     </Grid>

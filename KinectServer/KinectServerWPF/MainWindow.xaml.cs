@@ -45,6 +45,7 @@ namespace KinectServerWPF
                 reader = sensor.OpenMultiSourceFrameReader(FrameSourceTypes.Color | FrameSourceTypes.Body);
                 reader.MultiSourceFrameArrived += Reader_MultiSourceFrameArrived;
             }
+            communicateWithServer();
         }
 
         private void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
@@ -253,14 +254,14 @@ namespace KinectServerWPF
         private void checkHeights(double lvl1, double lvl2, double lvl3)
         // Mark tank that reaches a critical level
         {
-            if (lvl1 <= 50 || lvl1 >= 200) tank1.Fill = Brushes.IndianRed;
-            else tank1.Fill = Brushes.DeepSkyBlue;
+            if (lvl1 <= 50 || lvl1 >= 200) tank1.Background = Brushes.IndianRed;
+            else tank1.Background = Brushes.DeepSkyBlue;
 
-            if (lvl2 <= 50 || lvl2 >= 200) tank2.Fill = Brushes.IndianRed;
-            else tank2.Fill = Brushes.DeepSkyBlue;
+            if (lvl2 <= 50 || lvl2 >= 200) tank2.Background = Brushes.IndianRed;
+            else tank2.Background = Brushes.DeepSkyBlue;
 
-            if (lvl3 <= 50 || lvl3 >= 200) tank3.Fill = Brushes.IndianRed;
-            else tank3.Fill = Brushes.DeepSkyBlue;
+            if (lvl3 <= 50 || lvl3 >= 200) tank3.Background = Brushes.IndianRed;
+            else tank3.Background = Brushes.DeepSkyBlue;
 
         }
 
