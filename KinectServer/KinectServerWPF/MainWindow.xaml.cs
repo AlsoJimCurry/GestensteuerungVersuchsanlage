@@ -210,7 +210,7 @@ namespace KinectServerWPF
                 succes = s.sendSoapWriteMessage(originTank, targetTank, 1);
             }
             else { succes = s.sendSoapWriteMessage(null, null, 0); }
-            if (!succes) tblPumpStatus.Text = "No connection to server";
+            if (!succes) tblPumpStatus.Text = "No connection";
         }
 
         private void showLevels(List<string> tankLevels)
