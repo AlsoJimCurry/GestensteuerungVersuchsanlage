@@ -7,7 +7,7 @@ using Microsoft.Kinect;
 using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 
-namespace KinectServerWPF
+namespace GestensteuerungVersuchsanlage
 {
     public partial class MainWindow : Window
     {
