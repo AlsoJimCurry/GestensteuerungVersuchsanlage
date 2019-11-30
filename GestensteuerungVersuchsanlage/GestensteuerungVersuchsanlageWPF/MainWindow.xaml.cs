@@ -294,7 +294,9 @@ namespace GestensteuerungVersuchsanlage
         private void btnHelp_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Kontrollieren Sie die Versuchsanlage mit Hilfe Ihrer Arme.\nWählen Sie dazu mit Ihrem linken Arm den Starttank aus und mit Ihrem rechten Arm den Zieltank. Beachten Sie, dass der Arm zur Auswahl eines Tanks gestreckt sein muss.\n" +
-                "Um den Pumpvorgang zu starten öffnen Sie beide Hände.\nSobald eine Hand geschlossen wird, wird der Pumpvorgang gestoppt.\n\nErscheint ein Tank rot, wurde eine kritische Füllhöhe erreicht.", "Help");
+                "Um den Pumpvorgang zu starten öffnen Sie beide Hände.\nSobald eine Hand geschlossen wird, wird der Pumpvorgang gestoppt.\n\nErscheint ein Tank rot, wurde eine kritische Füllhöhe erreicht.\n\n\nBitte beachten Sie:\n" +
+                "Note: When using GestensteuerungVersuchsanlage with a Kinect for Windows v2 Sensor, Microsoft will collect telemetry data (e.g. operating system, number of processors, graphic chipset, memory, device type, locale, time) " +
+                "in order to improve Microsoft products and services. The data will not be used to identify specific individuals.", "Help");
         }
 
         private void btnShowTanks_Click(object sender, RoutedEventArgs e)

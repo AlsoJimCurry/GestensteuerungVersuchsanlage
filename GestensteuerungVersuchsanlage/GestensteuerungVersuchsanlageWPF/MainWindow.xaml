@@ -5,17 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KinectServerWPF"
         mc:Ignorable="d"
-        Title="Gesture control" Height="700" Width="1200" Loaded="Window_Loaded"
+        Title="GestensteuerungVersuchsanlage" Height="700" Width="1200" Loaded="Window_Loaded"
         MinHeight="700" MinWidth="1200" ResizeMode="CanResize"
         >
     <Grid Background="DimGray">
-        <Viewbox Stretch="UniformToFill">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="55*"/>
+            <ColumnDefinition Width="1137*"/>
+        </Grid.ColumnDefinitions>
+        <Viewbox Stretch="UniformToFill" Grid.ColumnSpan="2">
             <Grid Width="1920" Height="1080">
                 <Image Source="resources\Help.png" HorizontalAlignment="Left" Stretch="None"></Image>
                 <Image Name="camera" Stretch="Fill"/>
                 <StackPanel x:Name="TankViz" Background="DimGray" Visibility="Hidden">
                     <Grid Width="900" Height="720" HorizontalAlignment="Left"  Margin="200,80,0,0">
-                        <Grid Width="300" HorizontalAlignment="Left">                            
+                        <Grid Width="300" HorizontalAlignment="Left">
                             <Border Name="tank1"  Width="150" Height="40" CornerRadius="0,0,40,40" Background="DeepSkyBlue" VerticalAlignment="Bottom" Margin="0,0,0,4"></Border>
                             <Border BorderBrush="Black" BorderThickness="5" Width="150" Height="550" CornerRadius="40" VerticalAlignment="Bottom"></Border>
                             <Label Content="Tank 1" HorizontalAlignment="Center" FontSize="60" Foreground="#FFF0F0F0"></Label>
@@ -37,7 +41,7 @@
                 </StackPanel>
             </Grid>
         </Viewbox>
-        <Grid HorizontalAlignment="Right" Width="400" Background="Black" Opacity="0.6">
+        <Grid HorizontalAlignment="Right" Width="400" Background="Black" Opacity="0.6" Grid.Column="1">
             <StackPanel Margin="20" >
                 <StackPanel>
                     <TextBlock Text="From:" Foreground="White" FontSize="30"></TextBlock>
@@ -58,10 +62,10 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
-        <Grid>
+        <Grid Grid.ColumnSpan="2">
             <Button Style="{DynamicResource RoundCorner}" x:Name="btnShowTanks"  Content="Show Tanks" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Width="145" Height="65" Background="DeepSkyBlue" Foreground="White" FontSize="21" Click="btnShowTanks_Click" Margin="20,0,0,100" />
             <Button Style="{DynamicResource RoundCorner}" x:Name="btnShowCamera" Content="Show Camera" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Width="145" Height="65" Background="DeepSkyBlue" Foreground="White" FontSize="21" Click="btnShowCamera_Click" Margin="20,0,0,20"/>
         </Grid>
-        <Button Style="{DynamicResource RoundCorner}" x:Name="btnHelp" Content="?" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="35" Height="34" Background="DeepSkyBlue" Foreground="White" FontSize="20" Margin="0,0,10,10" Click="btnHelp_Click"/>
+        <Button Style="{DynamicResource RoundCorner}" x:Name="btnHelp" Content="?" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="35" Height="34" Background="DeepSkyBlue" Foreground="White" FontSize="20" Margin="0,0,10,10" Click="btnHelp_Click" Grid.Column="1"/>
     </Grid>
 </Window>
