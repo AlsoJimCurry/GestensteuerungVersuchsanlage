@@ -242,12 +242,12 @@ namespace GestensteuerungVersuchsanlage
                 double lvl2 = Double.Parse(level2.Replace(".", ","));
                 double lvl3 = Double.Parse(level3.Replace(".", ","));
 
-                checkHeights(lvl1, lvl2, lvl3);
-
                 // Controll tank viz
-                tank1.Height = Double.Parse(level1.Replace(".", ","))*2;
-                tank2.Height = Double.Parse(level2.Replace(".", ","))*2;
-                tank3.Height = Double.Parse(level3.Replace(".", ","))*2;
+                tank1.Height = lvl1 * 2;
+                tank2.Height = lvl2 * 2;
+                tank3.Height = lvl3 * 2;
+
+                checkHeights(lvl1, lvl2, lvl3);
             }
         }
 
@@ -263,16 +263,6 @@ namespace GestensteuerungVersuchsanlage
             if (lvl3 <= 50 || lvl3 >= 200) tank3.Background = Brushes.IndianRed;
             else tank3.Background = Brushes.DeepSkyBlue;
 
-        }
-
-        private void startWarning(Rectangle tank)
-        {
-            tank.Fill = Brushes.Red;
-        }
-
-        private void stopWarning(Rectangle tank)
-        { 
-            tank.Fill = Brushes.DeepSkyBlue;
         }
 
         private void btnShowCamera_Click(object sender, RoutedEventArgs e)
