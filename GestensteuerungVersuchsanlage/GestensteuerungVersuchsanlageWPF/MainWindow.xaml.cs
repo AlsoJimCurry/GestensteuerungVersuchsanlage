@@ -38,7 +38,6 @@ namespace GestensteuerungVersuchsanlage
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             sensor = KinectSensor.GetDefault();
-            sensor.Open();
             if (sensor != null)
             {
                 sensor.Open();
