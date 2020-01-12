@@ -79,7 +79,7 @@ namespace GestensteuerungVersuchsanlage
                         if (body.IsTracked)
                         {
                             #region Find Handstates
-                            if (body.HandRightState == HandState.Open && body.HandLeftState == HandState.Open)
+                            if (body.HandRightState == HandState.Open && body.HandLeftState == HandState.Open && targetTank != originTank && originTank != "-" && targetTank != "-")
                             {
                                 startPump = true;
                                 tblPumpStatus.Text = "Pumping";
